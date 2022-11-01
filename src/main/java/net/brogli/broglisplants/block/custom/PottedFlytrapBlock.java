@@ -44,9 +44,6 @@ public class PottedFlytrapBlock extends FlytrapBlock{
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (this.soundTimer > 0) {
-            this.soundTimer--;
-        }
         entity.hurt(DamageSource.CACTUS, 0.0F);
 
         if (!level.isClientSide) {

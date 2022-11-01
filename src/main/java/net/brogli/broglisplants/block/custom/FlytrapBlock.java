@@ -73,19 +73,14 @@ public class FlytrapBlock extends BaseEntityBlock implements BonemealableBlock {
         return (canSupportRigidBlock(levelReader, blockpos) || canSupportCenter(levelReader, blockpos, Direction.UP));
     }
 
-    public int soundTimer = 7;
-
     public void tick(BlockState state, ServerLevel serverLevel, BlockPos pos, Random source) {
         int i = this.getSignalStrength(serverLevel, pos);
         if (i > 0) {
-            this.checkPressed((Entity)null, serverLevel, pos, i);
+            this.checkPressed(null, serverLevel, pos, i);
         }
     }
 
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (this.soundTimer > 0) {
-            this.soundTimer--;
-        }
         if ((entity instanceof ItemEntity && ((ItemEntity) entity).getItem().getItem() == BroglisPlantsItems.ITEM_FLYTRAP_SEEDS.get())) {
             entity.hurt(DamageSource.CACTUS, 0.0F);
         } else {
@@ -131,10 +126,6 @@ public class FlytrapBlock extends BaseEntityBlock implements BonemealableBlock {
         if (!list.isEmpty()) {
             for(Entity entity : list) {
                 if (!entity.isIgnoringBlockTriggers()) {
-                    if (this.soundTimer == 0) {
-                        level.playSound(null, pos, BroglisPlantsSounds.FROG_EAT.get(), SoundSource.BLOCKS, 0.4f, 0.75f);
-                        this.soundTimer = 7;
-                    }
                     if (level.random.nextFloat() > 0.75F) {
                         level.addParticle(ParticleTypes.SPORE_BLOSSOM_AIR, pos.getX() + (level.random.nextFloat()), pos.getY() + 0.3D, pos.getZ() + (level.random.nextFloat()), 0.0D, 0.0D, 0.0D);
                     }
