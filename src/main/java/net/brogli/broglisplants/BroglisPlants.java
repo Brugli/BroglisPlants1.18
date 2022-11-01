@@ -5,6 +5,7 @@ import net.brogli.broglisplants.block.BroglisPlantsBlockEntities;
 import net.brogli.broglisplants.block.BroglisPlantsBlocks;
 import net.brogli.broglisplants.item.BroglisPlantsItems;
 import net.brogli.broglisplants.particle.BroglisPlantsParticles;
+import net.brogli.broglisplants.sounds.BroglisPlantsSounds;
 import net.brogli.broglisplants.world.feature.BroglisPlantsConfiguredFeatures;
 import net.brogli.broglisplants.world.feature.BroglisPlantsPlacedFeatures;
 import net.minecraft.world.level.block.Blocks;
@@ -34,6 +35,7 @@ public class BroglisPlants {
         BroglisPlantsParticles.register(eventBus);
         BroglisPlantsConfiguredFeatures.register(eventBus);
         BroglisPlantsPlacedFeatures.register(eventBus);
+        BroglisPlantsSounds.register(eventBus);
 
         eventBus.addListener(this::setup);
 
